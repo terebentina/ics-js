@@ -10,6 +10,7 @@ module.exports = {
 		filename: 'ics.js',
 		publicPath: '/dist/',
 		pathinfo: false,
+		libraryTarget: 'umd'
 	},
 	module: {
 		loaders: [
