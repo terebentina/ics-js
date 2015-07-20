@@ -19,7 +19,7 @@ import ICS from "ics-js";
 const cal = new ICS.components.VCALENDAR();
 ```
 
-The following components are implenented:
+The following components are implemented:
 
 * `VCALENDAR`
 * `VEVENT`
