@@ -1,5 +1,10 @@
 # ics-js
-Create ICS files in ES6 JavaScript.
+Create ICS files in ES6.
+
+## Status
+
+[![npm version](https://badge.fury.io/js/ics-js.svg)](http://badge.fury.io/js/ics-js)
+[![Build Status](https://secure.travis-ci.org/angeloashmore/ics-js.svg?branch=master)](http://travis-ci.org/angeloashmore/ics-js?branch=master)
 
 ## Installation
 
@@ -10,13 +15,13 @@ Create ICS files in ES6 JavaScript.
 Import the module:
 
 ```js
-import ICS from "ics-js";
+import ICS from 'ics-js';
 ```
 
 ### Create a component
 
 ```js
-const cal = new ICS.components.VCALENDAR();
+const cal = new ICS.VCALENDAR();
 ```
 
 The following components are implemented:
@@ -29,8 +34,14 @@ The following components are implemented:
 ### Add properties to a component
 
 ```js
-cal.addProp(new ICS.properties.VERSION(2)); // Number(2) is converted to "2.0"
-cal.addProp(new ICS.properties.PRODID("XYZ Corp"));
+// Component#addProp(name, value, props)
+//
+// name: Name of the property
+// value: Value of the property
+// props: Object with properties for the property
+
+cal.addProp('VERSION', 2) // Number(2) is converted to '2.0'
+cal.addProp('PRODID', 'XYZ Corp');
 ```
 
 Each component contains a list of property validations. Only valid properties
@@ -38,20 +49,30 @@ can be added according to the RFC 5545 spec.
 
 The following properties are implemented:
 
-* `DTEND` - Formats a Date to spec.
-* `DTSTAMP` - Formats a Date to spec.
-* `DTSTART` - Formats a Date to spec.
-* `VERSION` - Formats a Number to spec.
-* `CATEGORIES` - Formats an Array to spec.
+| Name | Input | Output |
+| ---- | ----- | ------ |
+| `CATEGORIES` | `Array<String>` | Array items separated by `,` |
+| `CREATED` | `Date` | Formatted date to spec |
+| `DTEND` | `Date` | Formatted date to spec |
+| `DTSTAMP` | `Date` | Formatted date to spec |
+| `DTSTART` | `Date` | Formatted date to spec |
+| `DUE` | `Date` | Formatted date to spec |
+| `EXDATE` | `Array<Date>` | Array items separated by `,` formatted to spec |
+| `GEO` | `Array<Float>` | Array items separated by `;` (should be `[x, y]`) |
+| `LAST-MODIFIED` | `Date` | Formatted date to spec |
+| `RDATE` | `Date` | Formatted date to spec |
+| `TRANSP` | `Boolean` | `TRANSPARENT` if true, `OPAQUE` if false |
+| `UID` | `String` or none | If no input is provided, generates a random GUID |
+| `VERSION` | `Number` | Float with 1 decimal to spec |
 
-Other properties (e.g. `SUMMARY`, `LOCATION`) are stored as-is without transformations.
+All other properties (e.g. `SUMMARY`, `LOCATION`) are stored as-is without transformations.
 
 ### Nest a component
 
 ```js
-const event = new ICS.components.VEVENT();
-event.addProp(new ICS.properties.UID(1));
-event.addProp(new ICS.properties.DTSTAMP(new Date("2015-07-18 10:00:00")));
+const event = new ICS.VEVENT();
+event.addProp('UID');
+event.addProp('DTSTAMP', new Date('2015-07-18 10:00:00'), { VALUE: 'DATE-TIME' });
 
 cal.addComponent(event);
 ```
@@ -63,8 +84,8 @@ can be nested according to the RFC 5545 spec.
 
 ```js
 cal.toString(); // Returns a string
-ICS.toBlob(cal.toString()); // Returns a Blob
-ICS.toBase64(cal.toString()); // Returns a base64 string
+cal.toBlob(); // Returns a Blob
+cal.toBase64(); // Returns a Promise with a base64 string as the resolved value
 ```
 
 ## Acknowledgements

@@ -1,10 +1,10 @@
 {
   "name": "ics-js",
-  "version": "0.6.6",
-  "description": "Create ICS files in ES6 Javascript",
-  "main": "dist/ics.js",
+  "version": "0.8.2",
+  "description": "Create ICS files in ES6",
+  "main": "src/ICS.js",
   "scripts": {
-    "test": "mocha --compilers js:babel/register",
+    "test": "mocha",
     "build": "webpack"
   },
   "repository": {
@@ -24,11 +24,8 @@
   "homepage": "https://github.com/angeloashmore/ics-js#readme",
   "devDependencies": {
     "babel": "^5.6.23",
-    "babel-core": "^5.7.4",
-    "babel-loader": "^5.3.2",
     "mocha": "^2.2.5",
-    "node-libs-browser": "^0.5.2",
-    "webpack": "^1.10.1"
+    "node-libs-browser": "^0.5.2"
   },
   "dependencies": {
     "es6-error": "^1.0.0",
