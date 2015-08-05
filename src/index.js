@@ -1,1 +1,1 @@
-import ICS from './ICS';
+export * from './ICS';
