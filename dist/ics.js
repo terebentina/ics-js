@@ -176,7 +176,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var Component = (function () {
 	  _createClass(Component, null, [{
 	    key: 'separator',
-	    value: '\n',
+	    value: '\r\n',
 	    enumerable: true
 	  }, {
 	    key: 'requiredProps',
