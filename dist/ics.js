@@ -133,7 +133,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var hasProps = Object.keys(this.props).length > 0;
 	      var key = this.constructor.propName + (hasProps ? ';' + this.transformedProps() : '');
 	      var value = this.transformedValue();
-	      return (key + ':' + value).match(/.{1,75}/g).join('\r\n ');
+	      return (key + ':' + value).match(/.{1,71}/g).join('\r\n ');
 	    }
 	  }]);
 

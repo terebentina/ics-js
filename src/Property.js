@@ -31,6 +31,6 @@ export default class Property {
     const hasProps = Object.keys(this.props).length > 0;
     const key = this.constructor.propName + (hasProps ? ';' + this.transformedProps() : '');
     const value = this.transformedValue();
-    return `${key}:${value}`.match(/.{1,75}/g).join('\r\n ');
+    return `${key}:${value}`.match(/.{1,71}/g).join('\r\n ');
   }
 }
